@@ -20,20 +20,13 @@
   
     // Display data
     echo "Software Name: " . $sw_name . "\n";
+    echo '----------------------------------' . "\n";
     foreach($json_data as $item) {
        $date_today    = date("Y-m-d");
        $search_key_ok = array_key_exists($search_key, $item);
-       $not_yet_eol   = ($item[$search_key] > $date_today) or
-                        (isset($item[$search_key]));
-                        //($item[$search_key] == "" );
-/*
-       echo 'debug start' . "\n";
-       echo "search_key_ok: " . $search_key_ok . "\n";
-       echo "not_yet_eol: "   . $not_yet_eol   . "\n";
-       echo '//debug' . "\n";
-*/
-       if ( $search_key_ok and $not_yet_eol ) {
+       $not_yet_eol   = (($item[$search_key] > $date_today) or ($item[$search_key] == false));
 
+       if ( $search_key_ok and $not_yet_eol ) {
            $version_key_ok=array_key_exists($version_key, $item);
            $latest_version_key_ok=array_key_exists($latest_version_key, $item);
            if ($version_key_ok) {
@@ -41,7 +34,7 @@
            }
            if ($latest_version_key_ok) {   
                echo "Latest Version: " . $item[$latest_version_key] . "\n";
-               echo "\n\n";
+               echo "\n";
            }
        }
     } //END: foreach
