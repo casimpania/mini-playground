@@ -13,7 +13,7 @@
     }
   
     // Read the JSON file 
-    $json = file_get_contents("https://endoflife.date/api/${sw_name}.json");
+    $json = file_get_contents("https://endoflife.date/api/{$sw_name}.json");
   
     // Decode the JSON file
     $json_data = json_decode($json,true);
